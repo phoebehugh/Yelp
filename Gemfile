@@ -43,9 +43,11 @@ group :development, :test do
   gem 'spring'
 
   gem 'haml'
+  
 end
 
 group :test do
+  gem 'shoulda'
   gem 'rspec-rails'
   gem 'capybara'
 end
