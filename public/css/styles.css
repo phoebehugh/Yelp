@@ -76,6 +76,7 @@ a:active {
 }
 
 .restaurant_list {
+  border-radius: 20px;
   margin: 100px;
   padding: 20px;
   background-color: white;
