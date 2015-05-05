@@ -48,12 +48,36 @@ table {
 }
 
 body {
-  background-color: #1ABC9C;
+  background-image: url(../images/background.png);
   color: white;
   text-align: center;
   padding-top: 25px;
   padding-right: 50px;
   padding-bottom: 25px;
   padding-left: 50px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 25px;
 }
 
+a:visited {
+  /*color: #3dffd9;*/
+}
+
+a:link {
+  /*color: black;*/
+}
+
+a:hover {
+  color: aliceblue;
+}
+
+a:active {
+  color: lightpink;
+}
+
+.restaurant_list {
+  margin: 100px;
+  padding: 20px;
+  background-color: white;
+  opacity: 0.6;
+}

@@ -1,9 +1,9 @@
-
-- if @restaurants.any?
-  - @restaurants.each do |restaurant|
-    %h2= link_to restaurant.name, restaurant_path(restaurant)
-    = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
-- else
-  %h1 No restaurants yet!
-
-= link_to 'Add a restaurant', new_restaurant_path
+.restaurant_list
+  - if @restaurants.any?
+    - @restaurants.each do |restaurant|
+      %h2= link_to restaurant.name, restaurant_path(restaurant)
+      = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
+  - else
+    %h1 No restaurants yet!
+    
+  = link_to 'Add a restaurant', new_restaurant_path
