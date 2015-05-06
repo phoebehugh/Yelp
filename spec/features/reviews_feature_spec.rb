@@ -26,8 +26,4 @@ feature 'reviewing' do
      expect(page).not_to have_content('Dope!')
   end
 
-  scenario 'reviews belong to restaurants' do
-    expect(review).to belong_to :restaurants
-  end
-
 end
