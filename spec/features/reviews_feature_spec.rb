@@ -22,9 +22,12 @@ feature 'reviewing' do
      click_button 'Leave Review'
 
      expect(current_path).to eq '/restaurants'
-     click_button "Delete Nobu"
-     expect(page).not_to have_content('Nobu')     
+     click_link "Delete Nobu"
      expect(page).not_to have_content('Dope!')
+  end
+
+  scenario 'reviews belong to restaurants' do
+    expect(review).to belong_to :restaurants
   end
 
 end
