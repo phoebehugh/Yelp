@@ -53,3 +53,5 @@ group :test do
   gem 'rspec-collection_matchers'
 end
 
+gem 'devise'
+
