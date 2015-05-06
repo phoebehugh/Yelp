@@ -14,4 +14,17 @@ feature 'reviewing' do
      expect(page).to have_content('Dope!')
   end
 
+  scenario 'deleting a restaurant also deletes the reviews' do
+     visit '/restaurants'
+     click_link 'Leave Review'
+     fill_in "Thoughts", with: "Dope!"
+     select '3', from: 'Rating'
+     click_button 'Leave Review'
+
+     expect(current_path).to eq '/restaurants'
+     click_button "Delete Nobu"
+     expect(page).not_to have_content('Nobu')     
+     expect(page).not_to have_content('Dope!')
+  end
+
 end
