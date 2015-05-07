@@ -6,7 +6,8 @@
         - if restaurant.user_id == current_user.id
           = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
           = link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete
-      = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant.id)
+        - unless restaurant.reviewers.ids.include? current_user.id
+          = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant.id)
   - else
     %h1 No restaurants yet!
 
@@ -20,7 +21,7 @@
         %ul
           - restaurant.reviews.each do |review|
             %li
-              = review.thoughts
+              = review.thoughts 
               %strong= review.rating
               /5
       - else

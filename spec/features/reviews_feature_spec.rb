@@ -8,7 +8,8 @@ feature 'reviewing' do
   include RestaurantSpecHelpers
 
   scenario 'allows users to leave a review using a form' do
-     Restaurant.create name: 'Nobu'
+     sign_up_and_sign_in
+     add_restaurant
      visit '/restaurants'
      click_link 'Review Nobu'
      fill_in "Thoughts", with: "Dope!"
@@ -31,6 +32,17 @@ feature 'reviewing' do
      expect(current_path).to eq '/restaurants'
      click_link "Delete Nobu"
      expect(page).not_to have_content('Dope!')
+  end
+
+  scenario 'user can only leave one review per restaurant' do
+    sign_up_and_sign_in
+    add_restaurant
+    visit '/restaurants'
+    click_link 'Review Nobu'
+    fill_in "Thoughts", with: "Dope!"
+    select '3', from: 'Rating'
+    click_button 'Leave Review'
+    expect(page).not_to have_link('Review Nobu')
   end
 
 end
