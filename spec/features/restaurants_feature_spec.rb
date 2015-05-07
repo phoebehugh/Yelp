@@ -1,6 +1,16 @@
 require 'rails_helper'
+require 'helpers/users'
+require 'helpers/restaurants'
 
 feature 'restaurants' do
+
+  include UserSpecHelpers
+  include RestaurantSpecHelpers
+
+  before :each do
+    sign_up_and_sign_in
+  end
+
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
       visit '/restaurants'
@@ -55,8 +65,9 @@ feature 'restaurants' do
     end
   end
 
-  context 'editing restaurants' do
-    before {Restaurant.create name: 'Nobu'}
+  context 'editing and deleting restaurants' do
+    
+    before {add_restaurant}
 
     scenario 'let a user edit a restaurant' do
       visit '/restaurants'
@@ -66,11 +77,7 @@ feature 'restaurants' do
       expect(page).to have_content 'Nobu Matsuhisa'
       expect(current_path).to eq '/restaurants'
     end
-  end
-
-  context 'deleting restaurants' do
-    before {Restaurant.create name: 'Nobu'}
-
+  
     scenario 'removes a restaurant when a user clicks a delete link' do
       visit '/restaurants'
       click_link 'Delete Nobu'

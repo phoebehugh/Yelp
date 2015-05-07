@@ -1,11 +1,16 @@
 require 'rails_helper'
+require 'helpers/users'
+require 'helpers/restaurants'
 
 feature 'reviewing' do
-  before {Restaurant.create name: 'Nobu'}
+
+  include UserSpecHelpers
+  include RestaurantSpecHelpers
 
   scenario 'allows users to leave a review using a form' do
+     Restaurant.create name: 'Nobu'
      visit '/restaurants'
-     click_link 'Leave Review'
+     click_link 'Review Nobu'
      fill_in "Thoughts", with: "Dope!"
      select '3', from: 'Rating'
      click_button 'Leave Review'
@@ -15,8 +20,10 @@ feature 'reviewing' do
   end
 
   scenario 'deleting a restaurant also deletes the reviews' do
+     sign_up_and_sign_in
+     add_restaurant
      visit '/restaurants'
-     click_link 'Leave Review'
+     click_link 'Review Nobu'
      fill_in "Thoughts", with: "Dope!"
      select '3', from: 'Rating'
      click_button 'Leave Review'
